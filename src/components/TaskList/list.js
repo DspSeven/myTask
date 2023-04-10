@@ -1,6 +1,5 @@
 const TaskList = props => {
-  const {tagInfo, tagsList} = props
-  // there is no task present
+  const {tagInfo, tagsList, tagging} = props
   const noTask = () => {
     console.log('')
     return (
@@ -24,11 +23,20 @@ const TaskList = props => {
     )
   }
 
+  const specificTag = event => {
+    tagging(event.target.value)
+  }
+
   return (
     <div>
       <h1>Tags</h1>
       {tagsList.map(eachTag => (
-        <button type="button" key={eachTag.optionId}>
+        <button
+          type="button"
+          key={eachTag.optionId}
+          value={eachTag.displayText}
+          onClick={specificTag}
+        >
           {eachTag.displayText}
         </button>
       ))}
@@ -37,4 +45,5 @@ const TaskList = props => {
     </div>
   )
 }
+
 export default TaskList
